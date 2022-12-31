@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<style>
+			#conttainer
+			{
+				height: 620px;
+				width: 750px;
+				background-color: black;
+				color: red;
+				position: absolute;
+				left: 300px;
+				border: 1px solid black;
+                border-radius: 3%;
+			}
+			#abc
+			{
+				text-align: center;
+			}
+			#bor
+			{
+				height: 20px;
+				width: 750px;
+				border: 1px solid black;
+			}
+			#re
+			{
+				position: absolute;
+				top: 121px;
+			  left: 340px;
+			}
+      #date
+      {
+      	position: absolute;
+      	right: 0px;
+      }
+      #dd
+      {
+      	height: 381px;
+      	width: 750px;
+      	border: 1px solid black;
+      }
+      #name
+      {
+      	position: absolute;
+      	top: 250px;
+        left: 10px;
+      }
+      #table
+      {
+      	position: absolute;
+      	top: 300px;
+      	left: 130px;
+      }
+      #btn
+      {
+		background-color: red;
+      	position: absolute;
+      	left: 320px;
+      	top: 570px;
+      }
+		</style>
+		<script>
+			$(document).ready(function(){
+				$("#uname").keypress(function(e){
+        var keyCode=e.which;
+        if((keyCode>=97 && keyCode<=122)||(keyCode>=65 && keyCode<=90))
+        {
+        	$("#error_msg").text("");
+        	return true;
+        }
+        else
+        {
+        	$("#error_msg").text("not allowed numbers");
+        	$("#error_msg").css("color","red");
+        	return false;
+        }
+      });
+      $("#uname").focus(function(){
+          $("#error_msg").text("only allowed character value");
+        	$("#error_msg").css("color","blue");
+      });
+      $("#pay_fees").keypress(function(e){
+     	var keyCode=e.which;
+     	// alert(keyCode);
+     	if(keyCode>=48 && keyCode<=57)
+     	{
+     		return true;
+     	}
+     	else
+     	{
+     		// alert("not allowed character value");
+     		return false;
+     	}
+     });
+      $("#pay_fees").focus(function(){
+          $("#error_msg2").text("only allowed character value");
+      });
+      	$("#btn").click(function(){
+      		 window.print();
+      	});
+      	
+			});
+		</script>
+</head>
+<body>
+      <div id="conttainer">
+      	<div id="abc">
+      	<h1 title="Earning Trust in Education" style="color: white;"><span style="background-color:blue ;">Programmers</span><span style="background-color: red;">Point</span></h1>
+      	<h4>vijay nagar , indore(M.P.).ph.0731-111111</h4>
+      </div><br>
+        <div id="bor">
+      	    <h4 id="re">Receipt</h4>
+        </div>
+      <br>
+     <input type="date" name="" id="date">
+     <br><br><br>
+     <div id="dd">
+     </div>
+     <div id="name">
+     Name of Student:- <input type="text " id="uname" >
+                       <span id="error_msg"></span>
+                     </div>
+    <table border="1px" cellspacing="2px" cellpadding="5px" id="table">
+    	<tr>
+    		<th><b>COURSES OFFERED BY INSITITUTE</b></th>
+    		<th>COURSE FEE</th>
+    	</tr>
+    	<tr>
+    	 	<td><b>Course</b></td>
+    	 	<td>
+    	 		<select>
+    	 			<option>Select Course</option>
+    	 			<option>JAVA</option>
+    	 			<option>Python</option>
+    	 			<option>React</option>
+    	 			<option>Bootstrap</option>
+    	 			<option>JavaScript</option>
+    	 			<option>J-Query</option>
+    	 			<option>C</option>
+    	 			<option>C++</option>
+    	 			<option>PHP</option>
+    	 		</select></td>
+    	 </tr>
+    	 <tr>
+    	 	<td><b>Pay Fees</b></td>
+    	 	<td><input type="text" name="" id="pay_fees"></td>
+    	 	<span id="error_msg2"></span>
+    	 </tr>
+    	 <tr>
+    	 	<td><b>GST Include</b><select onchange="a()" id="gst">
+    	 		                <option  value="">Select GST</option>
+    	 		                <option  value="5%">5%</option>
+    	 		                <option value="18%">18%</option>
+    	 		                <option value="28%">28%</option>
+    	 	                  </select></td>
+    	 	<td><input type="text" name="" id="includegst" readonly></td>
+    	 </tr>
+    	 <tr>
+    	 	<td><b>CGST(%)</b></td>
+    	 	<td><input type="text" name="" readonly id="cgst"></td>
+    	 </tr>
+    	 <tr>
+    	 	<td><b>SGST(%)</b></td>
+    	 	<td><input type="text" name="" readonly id="sgst"></td>
+    	 </tr>
+    	 <tr>
+    	 	<td><b>Total Fee Includeing tax</b></td>
+    	 	<td><input type="text" name="" readonly id="total"></td>
+    	 </tr>
+    </table>
+    <button id="btn">Print Receipt</button>
+   </div>
+   <script >
+   	 function a()
+            { 
+              var GSTP = document.getElementById("gst").value;
+              var a = parseInt(GSTP);
+              var PAYFEES = document.getElementById("pay_fees").value;
+              var b   =parseInt(PAYFEES);
+              var c = b*a/100;
+              var d = c+b;
+              var e = c/2;
+              var f = c/2;
+              document.getElementById("total").value=d;
+              document.getElementById("cgst").value=f;
+              document.getElementById("sgst").value=e;
+              document.getElementById("includegst").value=c;
+             }
+   </script>
+
+</body>
+</html>
